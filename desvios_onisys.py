@@ -103,7 +103,9 @@ df["viagem_tratada"] = df.apply(extrair_viagem, axis=1)
 def filtro_valido(val):
   if not val:
     return False
-  return not val.isdigit()
+  if val.isdigit():
+    return False
+  return len(val) <= 10
 
 
 df_filtrado = df[df["viagem_tratada"].apply(filtro_valido)].copy()
