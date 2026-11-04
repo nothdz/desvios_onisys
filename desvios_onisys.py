@@ -105,7 +105,7 @@ def filtro_valido(val):
     return False
   if val.isdigit():
     return False
-  return len(val) <= 10
+  return 7 < len(val) <= 10
 
 
 df_filtrado = df[df["viagem_tratada"].apply(filtro_valido)].copy()
