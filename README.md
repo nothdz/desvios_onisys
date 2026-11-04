@@ -78,7 +78,7 @@ tail -n 20 log.txt
 |---|---|---|
 | Dias de busca | `dias_busca` | 7 |
 | Status consultados | `lista_status` | ABERTO, PENDENTE, FINALIZADO, DELETADO |
-| Tamanho mínimo do `cd_viagem` | `filtro_valido` | 10 caracteres |
+| Tamanho máximo do `cd_viagem` | `filtro_valido` | 10 caracteres |
 | Registros por lote | `chunk_size` | 500 |
 | Consultas simultâneas | `max_workers` | 10 |
 
