@@ -124,11 +124,23 @@ for _, row in df.iterrows():
     distribuidora = row.get("distribuidora")
     if pd.isna(distribuidora):
         distribuidora = row.get("cliente") or row.get("nome_distribuidora")
-    
     if isinstance(distribuidora, dict):
         distribuidora = distribuidora.get("nome") or distribuidora.get("descricao") or distribuidora.get("razao_social")
-    
     nome_distribuidora = str(distribuidora).strip() if distribuidora is not None and not pd.isna(distribuidora) else ""
+
+    plano_acao = row.get("plano_acao")
+    if pd.isna(plano_acao):
+        plano_acao = row.get("plano") or row.get("acao")
+    if isinstance(plano_acao, dict):
+        plano_acao = plano_acao.get("descricao") or plano_acao.get("nome") or plano_acao.get("texto")
+    nome_plano_acao = str(plano_acao).strip() if plano_acao is not None and not pd.isna(plano_acao) else ""
+
+    responsavel = row.get("responsavel")
+    if pd.isna(responsavel):
+        responsavel = row.get("nome_responsavel") or row.get("usuario_responsavel")
+    if isinstance(responsavel, dict):
+        responsavel = responsavel.get("nome") or responsavel.get("descricao") or responsavel.get("razao_social")
+    nome_responsavel = str(responsavel).strip() if responsavel is not None and not pd.isna(responsavel) else ""
 
     registros.append({
         "id": str(row.get("id")),
@@ -136,6 +148,8 @@ for _, row in df.iterrows():
         "motorista": limpar_nulo(nome_motorista),
         "veiculo": limpar_nulo(placa_veiculo),
         "distribuidora": limpar_nulo(nome_distribuidora),
+        "plano_acao": limpar_nulo(nome_plano_acao),
+        "responsavel": limpar_nulo(nome_responsavel),
         "data_desvio": limpar_nulo(row.get("data_desvio")),
         "tipo": limpar_nulo(row.get("tipo")),
         "criticidade": limpar_nulo(row.get("criticidade")),
